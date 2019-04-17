@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using keepr.Repositories;
 using Keepr.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Keepr.Controllers
@@ -27,17 +28,24 @@ namespace Keepr.Controllers
       return Ok(results);
     }
 
-    //Get One by ID
-    // [HttpGet("{id}")]
-    // public void Get(int id)
-    // {
-
-    // }
+    //Get All by user ID
+    [HttpGet("user")]
+    public ActionResult<IEnumerable<Keep>> GetForUser()
+    {
+      string UserId = HttpContext.User.Identity.Name;
+      IEnumerable<Keep> results = _kr.GetKeepsForUser(UserId);
+      if (results == null)
+      {
+        return BadRequest();
+      }
+      return Ok(results);
+    }
 
     //Create One
     [HttpPost]
     public ActionResult<Keep> Create([FromBody] Keep keep)
     {
+      keep.userId = HttpContext.User.Identity.Name;
       Keep newKeep = _kr.CreateKeep(keep);
       if (newKeep == null) { return BadRequest(); }
       return Ok(newKeep);

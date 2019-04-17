@@ -15,11 +15,14 @@ namespace Keepr.Controllers
       _vr = vr;
     }
     //Get All
-    // [HttpGet]
-    // public ActionResult<IEnumerable<Vault>> Get()
-    // {
-    //   IEnumerable<Vault> results = _vr.GetVaultsForUser(UserId);
-    // }
+    [HttpGet]
+    public ActionResult<IEnumerable<Vault>> Get()
+    {
+      string UserId = HttpContext.User.Identity.Name;
+      IEnumerable<Vault> results = _vr.GetVaultsForUser(UserId);
+      if (results == null) { return BadRequest(); }
+      return Ok(results);
+    }
 
     //Get One vault by ID
     [HttpGet("{id}")]
@@ -37,6 +40,7 @@ namespace Keepr.Controllers
     [HttpPost]
     public ActionResult<Vault> Create([FromBody] Vault vault)
     {
+      vault.userId = HttpContext.User.Identity.Name;
       Vault newVault = _vr.CreateVault(vault);
       if (newVault == null) { return BadRequest(); }
       return Ok(newVault);
