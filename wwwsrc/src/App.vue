@@ -1,8 +1,22 @@
 <template>
   <div id="app">
+    <nav></nav>
+    <div style="margin-top: 55px;"></div>
     <router-view />
   </div>
 </template>
+
+<script>
+  import nav from '@/components/nav.vue'
+
+  export default {
+    name: 'app',
+    components: {
+      nav
+    }
+  }
+
+</script>
 
 <style>
   #app {

@@ -15,6 +15,7 @@
             <p v-if="loginForm">No account Click to Register</p>
             <p v-else>Already have an account click to Login</p>
         </div>
+        <public></public>
     </div>
 </template>
 
@@ -24,6 +25,7 @@
         mounted() {
             //checks for valid session
             this.$store.dispatch("authenticate");
+            this.$store.dispatch("getPublicKeeps");
         },
         data() {
             return {
@@ -46,6 +48,9 @@
             loginUser() {
                 this.$store.dispatch("login", this.creds);
             }
+        },
+        components: {
+            public
         }
     };
 </script>
