@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <h1>Welcome Home</h1>
-    <public></public>
+    <publicKeeps></publicKeeps>
   </div>
 </template>
 
 <script>
-  import public from '@/components/public.vue'
+  import publicKeeps from '@/components/publicKeeps.vue'
   export default {
     name: "home",
     mounted() {
@@ -16,7 +16,7 @@
       }
     },
     components: {
-      public
+      publicKeeps
     }
   };
 </script>

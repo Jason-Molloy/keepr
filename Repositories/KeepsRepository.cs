@@ -21,7 +21,7 @@ namespace keepr.Repositories
       try
       {
         int id = _db.ExecuteScalar<int>(@"
-      INSERT INTO keeps (name, description, UserId, img, Private) 
+      INSERT INTO keeps (name, description, UserId, img, isPrivate) 
       VALUES (@name, @description, @UserId, @img, @Private);
       SELECT LAST_INSERT_ID()", keep
         );
@@ -60,7 +60,7 @@ namespace keepr.Repositories
         description = @editedKeep.Description,
         UserId = @editedKeep.UserId,
         img = @editedKeep.img,
-        Private = @editedKeep.Private
+        isPrivate = @editedKeep.Private
         WHERE id = @id;
         SELECT * FROM keeps WHERE id = @id;
         ";

@@ -15,11 +15,12 @@
             <p v-if="loginForm">No account Click to Register</p>
             <p v-else>Already have an account click to Login</p>
         </div>
-        <public></public>
+        <publicKeeps></publicKeeps>
     </div>
 </template>
 
 <script>
+    import publicKeeps from '@/components/publicKeeps.vue'
     export default {
         name: "login",
         mounted() {
@@ -50,7 +51,7 @@
             }
         },
         components: {
-            public
+            publicKeeps
         }
     };
 </script>

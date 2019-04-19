@@ -3,23 +3,49 @@
     <div class="col-12 pop-up-modal">
       <!--modal for keeps - header - not sure?-->
       <form @submit.prevent="addKeep" id="modal">
-        <div class="modal-content">
-          <div class="modal-head text-center">
-            <h3>Keepry</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
-          <h5 class="modal-title">New Keep</h5>
-          <!--modal body - insert form to add keep-->
-          <!--modal footer-->
-          <div class="d-flex justify-content-center">
-            <button class="btn btn-success close-on-create" @click="submitKeep">Add</button>
+        <div class="modal fade" id="keepsModal" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+          <div class="modal-dialog d-flex justify-content-center" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h3>Keepry</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <h5 class="modal-title">New Keep</h5>
+              <!--modal body - insert form to add keep-->
+              <div class="modal-body">
+                <div class="md-form">
+                  <input type="text" v-model="newKeep.name" id="formOne" class="form-control validate">
+                  <label data-error="required" data-success="approved" for="formOne">Keep Name</label>
+                </div>
+                <div class="md-form">
+                  <input type="text" v-model="newKeep.img" id="formTwo" class="form-control validate">
+                  <label data-error="required" data-success="approved" for="formTwo">Image link(address)</label>
+                </div>
+                <div class="md-form">
+                  <input type="text" v-model="newKeep.name" id="formTwo" class="form-control validate">
+                  <label data-error="required" data-success="approved" for="formTwo">Description</label>
+                </div>
+                <div class="Col-12 d-flex justify-content-center mt-3">
+                  <div class="card d-flex justify-content-center">
+                    <p>Private</p>
+                    <input type="checkbox" id="checkbox" v-model="newKeep.Private">
+                    <label for="checkbox"></label>
+                  </div>
+                </div>
+              </div>
+              <!--modal footer-->
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-success close-on-create" @click="submitKeep">Add</button>
+              </div>
+            </div>
           </div>
         </div>
       </form>
       <div class="col-12">
         <div class="text-center">
-          <!--button to open modal and create a keep to add-->
+          <a href="" class="btn btn-success" data-toggle="modal" data-target="#keepsModal">Create Keep</a>
         </div>
       </div>
     </div>

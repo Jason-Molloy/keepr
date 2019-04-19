@@ -3,7 +3,7 @@
     <div class="vkHome">
       <div class="col-12">
         <div style="text-align: left" class="vkHomeInfo"> Title: {{ActiveVaultName.name}}</div>
-        <div style="text-align: left" class="vkHomeInfo">Description: {{ActiveVaultName:description}}</div>
+        <div style="text-align: left" class="vkHomeInfo">Description: {{ActiveVaultName.description}}</div>
       </div>
       <div class="d-flex justify-content-center">
         <div class="card-columns">
@@ -40,7 +40,7 @@
       ActiveVaultName() {
         return this.$store.state.activeUserVaults.find(v => v.id == this.ActiveVault) || {}
       },
-      ActiveVaults() {
+      ActiveVault() {
         return this.$store.state.ActiveVault;
       }
     },

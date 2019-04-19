@@ -40,7 +40,7 @@ namespace Keepr.Controllers
     [HttpPost]
     public ActionResult<Vault> Create([FromBody] Vault vault)
     {
-      vault.userId = HttpContext.User.Identity.Name;
+      vault.UserId = HttpContext.User.Identity.Name;
       Vault newVault = _vr.CreateVault(vault);
       if (newVault == null) { return BadRequest(); }
       return Ok(newVault);
