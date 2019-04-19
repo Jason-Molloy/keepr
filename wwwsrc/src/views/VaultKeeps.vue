@@ -33,6 +33,9 @@
 
       }
     },
+    mounted() {
+      this.$store.dispatch('getVaultKeeps', this.$route.params.vaultId)
+    },
     computed: {
       VaultKeeps() {
         return this.$store.state.activeVaultKeeps;

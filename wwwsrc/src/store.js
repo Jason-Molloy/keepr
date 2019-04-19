@@ -5,7 +5,7 @@ import router from './router'
 
 Vue.use(Vuex)
 
-let baseUrl = location.host.includes('localhost') ? '//localhost:5000/' : '/'
+let baseUrl = location.host.includes('localhost') ? 'https://localhost:5001/' : '/'
 
 let auth = Axios.create({
   baseURL: baseUrl + "account/",
@@ -26,7 +26,7 @@ export default new Vuex.Store({
     activeUserKeeps: [],
     ActiveKeep: {},
     ActiveVault: {},
-    activeUserVaults: {},
+    activeUserVaults: [],
     activeVaultKeeps: [],
   },
   mutations: {
@@ -53,6 +53,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    //#region AUTH STUFF
     register({ commit, dispatch }, newUser) {
       auth.post('register', newUser)
         .then(res => {
@@ -67,7 +68,9 @@ export default new Vuex.Store({
       auth.get('authenticate')
         .then(res => {
           commit('setUser', res.data)
-          router.push({ name: 'home' })
+          dispatch('getUserVaults')
+          dispatch('getUserKeeps')
+          // router.push({ name: 'home' })
         })
         .catch(e => {
           console.log('not authenticated')
@@ -83,14 +86,11 @@ export default new Vuex.Store({
           console.log('Login Failed')
         })
     },
-    //get public keeps
-    getPublicKeeps({ commit, dispatch }) {
-      api.get('/keeps/')
-        .then(res => {
-          commit("setPublicKeeps", res.data)
-        })
-        .catch(err => console.log('Cannot get public keeps'))
-    },
+    //#endRegion
+
+
+
+    //vaults
     getUserVaults({ commit, dispatch }) {
       api.get('/vaults/')
         .then(res => {
@@ -101,30 +101,46 @@ export default new Vuex.Store({
     goToVaults() {
       router.push({ name: 'vaults' })
     },
+
+
+
     goHome() {
       router.push({ name: 'home' })
     },
     goLogin() {
       router.push({ name: 'login' })
     },
+
+    //vault keeps
     getVaultKeeps({ commit, dispatch }, vaultid) {
-      api.get('/vaultKeeps/' + vaultid)
+      api.get('/vaultKeep/' + vaultid)
         .then(res => {
           commit("setActiveVaultKeeps", res.data)
         })
       router.push({ name: 'vaultKeeps', params: { vaultid: vaultid } })
     },
+
+    //keeps
+
+    //get public keeps
+    getPublicKeeps({ commit, dispatch }) {
+      api.get('/keeps/')
+        .then(res => {
+          commit("setPublicKeeps", res.data)
+        })
+        .catch(err => console.log('Cannot get public keeps'))
+    },
     getMyKeeps({ commit }) {
       api.get('/keeps/user')
         .then(res => {
           commit("setAllUserKeeps", res.data)
+          router.push({ name: 'keeps' })
         })
-      router.push({ name: 'keeps' })
     },
     addKeep({ commit, dispatch }, payload) {
       api.post('/keeps/', payload)
         .then(res => {
-          dispatch('getUserKeeps')
+          dispatch('getMyKeeps')
         })
     },
     addVault({ commit, dispatch }, payload) {

@@ -25,9 +25,9 @@
       }
     },
     computed: {
-      Keeps() {
-        return this.$store.state.public.sort(() => Math.random());
-        console.log(this.$store.state.public);
+      keeps() {
+        // console.log(this.$store.state.publicKeeps);
+        return this.$store.state.publicKeeps.sort(() => Math.random());
       }
     },
     methods: {

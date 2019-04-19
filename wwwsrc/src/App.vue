@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <navigationBar></navigationBar>
+    <navigation-bar></navigation-bar>
     <div style="margin-top: 55px;"></div>
     <router-view />
   </div>
 </template>
 
 <script>
-  import nav from '@/components/navigationBar.vue'
+  import navigationBar from '@/components/navigationBar.vue'
 
   export default {
     name: 'app',
+    mounted() {
+      this.$store.dispatch("authenticate");
+      this.$store.dispatch("getPublicKeeps");
+    },
     components: {
       navigationBar
     }

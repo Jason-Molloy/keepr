@@ -25,8 +25,7 @@
         name: "login",
         mounted() {
             //checks for valid session
-            this.$store.dispatch("authenticate");
-            this.$store.dispatch("getPublicKeeps");
+
         },
         data() {
             return {

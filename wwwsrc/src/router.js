@@ -34,7 +34,7 @@ export default new Router({
     },
     {
       path: '/Vaults',
-      name: '/vaults',
+      name: 'vaults',
       component: Vaults
     },
     {

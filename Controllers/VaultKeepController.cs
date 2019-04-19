@@ -24,10 +24,10 @@ namespace Keepr.Controllers
     }
 
     //Get all keeps for a vault
-    [HttpGet]
-    public ActionResult<IEnumerable<VaultKeep>> Get(int vaultId)
+    [HttpGet("{vaultId}")]
+    public ActionResult<IEnumerable<Keep>> Get(int vaultId)
     {
-      IEnumerable<VaultKeep> results = _vkr.GetVaultKeeps(vaultId);
+      IEnumerable<Keep> results = _vkr.GetVaultKeeps(vaultId);
       if (results == null) { return BadRequest(); }
       return Ok(results);
     }
