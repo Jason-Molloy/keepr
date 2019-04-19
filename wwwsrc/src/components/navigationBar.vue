@@ -1,7 +1,7 @@
 <template>
   <div class="row container-fluid no-gutters">
     <div class="col-12">
-      <b-navbar class="navbar" fixed="top">
+      <navbar class="navbar" fixed="top">
         <div class="d-flex justify-content-start">
           <a href="#" @click="goHome()">Keepry<i class="fas fa-home"></i></a>
         </div>
@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end">
           <a href="#" @click="goToMyKeeps()">Your Keeps<i class="fas fa-folder"></i></a>
         </div>
-      </b-navbar>
+      </navbar>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav></nav>
+    <navigationBar></navigationBar>
     <div style="margin-top: 55px;"></div>
     <router-view />
   </div>
@@ -12,7 +12,7 @@
   export default {
     name: 'app',
     components: {
-      nav
+      navigationBar
     }
   }
 
